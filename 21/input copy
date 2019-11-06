@@ -1,0 +1,38 @@
+#ip 5
+
+00   seti 123 0 4
+01   bani 4 456 4
+02   eqri 4 72 4
+  
+03   addr 4 5 5
+  
+04   seti 0 0 5  Test done! [x,0,0,0,1,4]
+  
+05   seti 0 8 4             // r[4] = 0
+06   bori 4 65536 3         // r[3] = r[4] | 2**16
+07   seti 707129 0 4        // r[4] = 707129
+08   bani 3 255 2           // r[2] --> r[3] % 256
+09   addr 4 2 4             // r[4] += r[2]
+10   bani 4 16777215 4      // r[4] %= 16777216
+11   muli 4 65899 4         // r[4] *= 65899
+12   bani 4 16777215 4      // r[4] %= 16777216
+13   gtir 256 3 2           // r[2] --> 256 > r[3]
+14   addr 2 5 5             // Skip r[2] instructions
+15   addi 5 1 5             // Skip next instruction
+16   seti 27 6 5            // Jump to 28
+  
+17   seti 0 7 2             // r[2] = 0
+18   addi 2 1 1             // r[1] = r[2] + 1
+19   muli 1 256 1           // r[1] *= 256
+20   gtrr 1 3 1             // r[1] --> r[1] > r[3]
+21   addr 1 5 5             // Skip r[1] instructions 
+22   addi 5 1 5             // r[5]++ Skip next instruction
+23   seti 25 2 5            // Jump to 26
+24   addi 2 1 2             // r[2]++
+25   seti 17 1 5            // Jump to 18
+26   setr 2 4 3             // r[3] --> r[2]
+27   seti 7 4 5             // Jump to 8
+  
+28   eqrr 4 0 2             // check r[2] --> r[4] === r[0]: What is the value of r[4], when reaching here?
+29   addr 2 5 5             // Skip next instruction, if r[2] = 1
+30   seti 5 2 5             // Jump to 6
